@@ -44,7 +44,12 @@ public class ExchangeController {
         }
 
         return exchangeRepository.findById(exchangeId).map(exchange -> {
-            exchange.setCreator(exchangeRequest.getCreator());
+            exchange.setAccessCode(exchangeRequest.getAccessCode());
+            exchange.setExchangeDate(exchangeRequest.getExchangeDate());
+            exchange.setExchangeDescription(exchangeRequest.getExchangeDescription());
+            exchange.setLimitDate(exchangeRequest.getLimitDate());
+            exchange.setMaxAmount(exchangeRequest.getMaxAmount());
+            exchange.setExchangeName(exchangeRequest.getExchangeName());
             return exchangeRepository.save(exchange);
         }).orElseThrow(() -> new ResourceNotFoundException("Exchange", "id", exchangeId));
     }
